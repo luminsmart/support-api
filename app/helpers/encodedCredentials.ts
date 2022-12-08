@@ -1,0 +1,1 @@
+export const encodedCredentials = "Basic " + Buffer.from(process.env.API_KEY + ":x").toString('base64')

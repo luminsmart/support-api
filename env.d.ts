@@ -1,6 +1,6 @@
 declare namespace NodeJS {
   export interface ProcessEnv {
-    DATABASE_URL: string;
-    SESSION_SECRET: string;
+    FRESHDESK_URL: string
+    API_KEY: string
   }
 }
