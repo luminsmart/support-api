@@ -2,9 +2,10 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {fetchCategories, fetchFolders, fetchArticles} from "~/helpers/fetchFreshdesk";
+import { cors } from "remix-utils"
 
 // Merge articles and send to UI
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = async ({request}) => {
   const allArticles = [];
   const categories = await fetchCategories();
   
@@ -17,6 +18,7 @@ export const loader: LoaderFunction = async () => {
   }
 // TODO: Add error handling
 
-  return json(allArticles);
+  return await cors(request, json(allArticles));
+
 };
 
