@@ -35,6 +35,8 @@ const disallowList = [
   "72000359484",
   "72000524641",
   "72000515755",
+
+  "72000510890"
 ];
 
 // Get all the categories
@@ -82,11 +84,11 @@ export async function postTicket({
   subject: string;
   description: string;
   email: string;
-  metadata: string;
+  metadata: object;
 }) {
   const body = JSON.stringify({
     subject,
-    description: description + "\nUSERINFO:\n" + metadata,
+    description: description + "<br />USERINFO:<br />" + JSON.stringify(metadata),
     email,
     priority: 1,
     status: 2,
