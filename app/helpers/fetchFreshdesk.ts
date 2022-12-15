@@ -31,12 +31,11 @@ export const fetchFreshdesk = {
 
 // Contains categorieIds and folder ids that we do not want to show
 const disallowList = [
-  "72000064115",
-  "72000359484",
-  "72000524641",
-  "72000515755",
-
-  "72000510890"
+  72000064115,
+  72000359484,
+  72000524641,
+  72000515755,
+  72000510890
 ];
 
 // Get all the categories
@@ -45,8 +44,9 @@ export async function fetchCategories() {
   const response = await fetchFreshdesk.get("/solutions/categories");
   const json = await response.json();
   const data = json.filter(
-    (category: Record<string, unknown>) =>
-      !disallowList.includes(category.id as string)
+    (category: Record<string, unknown>) => {
+      return !disallowList.includes(category.id as number)
+    }
   );
   return data;
 }
@@ -88,7 +88,7 @@ export async function postTicket({
 }) {
   const body = JSON.stringify({
     subject,
-    description: description + "<br />USERINFO:<br />" + JSON.stringify(metadata),
+    description: `${description}  <br /><b>Metadata:</b><br /> <pre>${JSON.stringify(metadata, null, 2)}</pre>`,
     email,
     priority: 1,
     status: 2,
