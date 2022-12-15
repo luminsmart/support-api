@@ -9,10 +9,8 @@ import { cache } from "~/helpers/cache";
 export const loader: LoaderFunction = async ({ request }) => {
   if (cache.has("articles")) {
     let data = cache.get("articles")
-    console.log("Using cache to get articles")
     return await cors(request, json(data));
   }
-  console.log("using API to get articles")
   const allArticles = [];
   const categories = await fetchCategories();
 
@@ -28,6 +26,6 @@ export const loader: LoaderFunction = async ({ request }) => {
     // TODO: Add error handling
 
   return await cors(request, json(allArticles));
-
 };
+
 
