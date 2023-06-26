@@ -60,3 +60,75 @@ netlify deploy --build
 # production deployment
 netlify deploy --build --prod
 ```
+
+
+## Example JSON 
+
+#### Dialog
+```JSON
+{
+    "title": "Welcome to Lumin Edge",
+    "description": "Hello. <b>world</b>",
+    "url": "https://luminsmart.freshdesk.com/a/solutions/articles/72000551186",
+    "platforms": [
+        "android",
+        "desktop"
+    ],
+    "versions": {
+        "min": "0.0.1",
+        "max": "0.0.3",
+        "target": "0.0.2"
+    }
+}
+```
+#### Dialog Type
+```JS
+ {
+    id: number;
+    title: string;
+    description: string;
+    url: string | null;
+    platforms: string[] | null;
+    version: IVersion | null;
+}
+```
+
+
+#### Banner
+
+```JSON
+{
+    "title": "Example Banner",
+    "description": "Example Description",
+    "classes": "text-primary",
+    "url": "",
+    "closable": true
+}
+```
+
+#### Banner Type
+```JS
+{
+    id: number | string;
+    title: string;
+    description: string;
+    classes?: string | null;
+    url?: string | null;
+    click?: () => void;
+    icon?: string | null;
+    platforms: string[] | null;
+    version: IVersion | null;
+    closable: boolean | null;
+    isSupportStatus?: boolean | null
+}
+```
+
+
+### IVerson Type 
+```JS
+{
+    min: string;
+    max: string;
+    target: string;
+}
+```
