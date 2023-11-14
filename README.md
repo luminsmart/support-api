@@ -109,17 +109,18 @@ netlify deploy --build --prod
 #### Banner Type
 ```JS
 {
-    id: number | string;
-    title: string;
-    description: string;
-    classes?: string | null;
-    url?: string | null;
-    click?: () => void;
-    icon?: string | null;
-    platforms: string[] | null;
-    version: IVersion | null;
-    closable: boolean | null;
-    isSupportStatus?: boolean | null
+  id: number | string;
+  title: string;
+  description: string;
+  classes?: string | null;
+  url?: string | null;
+  click?: () => void;
+  icon?: string | null;
+  platforms: string[] | null;
+  version: Version | null;
+  closable: boolean | null;
+  isSupportStatus?: boolean | null;
+  callout?: boolean;
 }
 ```
 
