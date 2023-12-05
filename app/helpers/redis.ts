@@ -25,10 +25,18 @@ export async function fetchDialogs() {
   return JSON.parse(dialogs as string);
 }
 
-
 export async function fetchSupportHours() {
   await connect();
   const supportHours = await client.execute(["JSON.GET", "support-hours"]);
   await close();
   return JSON.parse(supportHours as string);
+}
+
+export async function postLogs(data: any) {
+  await connect();
+  await client.set("logs", JSON.stringify(data));
+  await close();
+  return {
+    status: "ok",
+  };
 }
