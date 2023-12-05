@@ -5,9 +5,9 @@ import { json } from "@remix-run/node";
 import { postLogs } from "../helpers/redis";
 
 export async function action(args: ActionArgs) {
-  const { email, metadata } = await args.request.json();
-  if (!email || !metadata) throw new Error("Required field not provided");
-  return await cors(args.request, json(postLogs({ email, metadata })));
+  const data = await args.request.json();
+  // if (!email || !metadata) throw new Error("Required field not provided");
+  return await cors(args.request, json(postLogs(data)));
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
