@@ -31,12 +31,3 @@ export async function fetchSupportHours() {
   await close();
   return JSON.parse(supportHours as string);
 }
-
-export async function postLogs(data: any) {
-  await connect();
-  await client.set("logs", JSON.stringify(data));
-  await close();
-  return {
-    status: "ok",
-  };
-}
