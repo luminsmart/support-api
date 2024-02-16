@@ -18,6 +18,10 @@ export const loader: LoaderFunction = async ({ request }) => {
     const categoryFolders = await fetchFolders(category.id);
     for await (const folder of categoryFolders) {
       const articles = await fetchArticles(folder.id);
+      articles.forEach((article: any) => {
+        article.folder_name = folder.name;
+        article.category_name = category.name;
+      })
       allArticles.push(...articles);
     }
   }
