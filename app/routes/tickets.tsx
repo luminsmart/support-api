@@ -34,14 +34,17 @@ export const action: ActionFunction = async ({ request }) => {
     throw new Error("Required field not provided");
   }
 
-  // Set appropriate CORS headers for the response
-  return json(postTicket({ subject, description, email, metadata }), {
+  // Make the postTicket call and return its result
+  const ticketResponse = await postTicket({ subject, description, email, metadata });
+
+  // Return the response with appropriate CORS headers
+  return cors(request, json(ticketResponse, {
     headers: {
       "Access-Control-Allow-Origin": "*", // Replace * with your frontend domain
       "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
     },
-  });
+  }));
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
