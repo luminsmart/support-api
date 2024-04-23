@@ -59,7 +59,7 @@ export async function fetchFolders(categoryId: string) {
   ).json();
 
   const data = response.filter(
-    (folder: Record<string, string>) => !disallowList.includes(folder.id)
+    (folder: Record<string, number>) => !disallowList.includes(folder.id)
   );
   return data;
 }
@@ -70,7 +70,7 @@ export async function fetchArticles(folderId: string) {
     await fetchFreshdesk.get(`/solutions/folders/${folderId}/articles`)
   ).json();
   const data = response.filter(
-    (article: Record<string, string>) => !disallowList.includes(article.id)
+    (article: Record<string, number>) => !disallowList.includes(article.id)
   );
   return data;
 }
